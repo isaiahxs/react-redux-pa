@@ -1,8 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const BookShow = () => {
   const { bookId } = useParams();
-  const book = {};
+  //ORIGINAL
+  // const book = {};
+  const book = useSelector(state => state.books[bookId])
 
   const changeCheckOut = (e) => {
     e.preventDefault();
