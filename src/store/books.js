@@ -1,13 +1,25 @@
 import initialBooks from '../data/initial-books.json'
 
-//action for deletion
+//actions
+export const ADD_BOOK = `books/ADD_BOOK`
 export const REMOVE_BOOK = `books/REMOVE_BOOK`
 
+
 //implicitly returning with the parentheses
+export const addBook = (book) => ({
+    //will send a book obj to the reducer when it is dispatched
+    type: ADD_BOOK,
+    book
+})
+
 export const removeBook = (bookId) => ({
     type: REMOVE_BOOK,
     bookId
 })
+
+
+
+
 
 const initialState = {}
 //to normalize the data
@@ -20,10 +32,14 @@ const booksReducer = (state=initialState, action) => {
     let newState = {...state}
 
     switch (action.type) {
+        case ADD_BOOK: {
+            newState[action.book.id] = action.book
+            return newState
+        }
+
         case REMOVE_BOOK:
             delete newState[action.bookId]
             return newState
-
 
         default:
             return state;
