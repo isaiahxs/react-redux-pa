@@ -1,5 +1,14 @@
 import initialBooks from '../data/initial-books.json'
 
+//action for deletion
+export const REMOVE_BOOK = `books/REMOVE_BOOK`
+
+//implicitly returning with the parentheses
+export const removeBook = (bookId) => ({
+    type: REMOVE_BOOK,
+    bookId
+})
+
 const initialState = {}
 //to normalize the data
 initialBooks.forEach(book => {
@@ -11,6 +20,11 @@ const booksReducer = (state=initialState, action) => {
     let newState = {...state}
 
     switch (action.type) {
+        case REMOVE_BOOK:
+            delete newState[action.bookId]
+            return newState
+
+
         default:
             return state;
     }
