@@ -3,12 +3,19 @@ import initialBooks from '../data/initial-books.json'
 //actions
 export const ADD_BOOK = `books/ADD_BOOK`
 export const REMOVE_BOOK = `books/REMOVE_BOOK`
+export const UPDATE_BOOK = `books/UPDATE_BOOK`
 
 
 //implicitly returning with the parentheses
 export const addBook = (book) => ({
     //will send a book obj to the reducer when it is dispatched
     type: ADD_BOOK,
+    book
+})
+
+//grabbing this book from the frontend
+export const updateBook = (book) => ({
+    type: UPDATE_BOOK,
     book
 })
 
@@ -33,6 +40,11 @@ const booksReducer = (state=initialState, action) => {
 
     switch (action.type) {
         case ADD_BOOK: {
+            newState[action.book.id] = action.book
+            return newState
+        }
+
+        case UPDATE_BOOK: {
             newState[action.book.id] = action.book
             return newState
         }

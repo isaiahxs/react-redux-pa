@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { addBook } from '../store/books';
+import { addBook, updateBook } from '../store/books';
 import { useDispatch } from 'react-redux';
 
 const BookForm = ({ book, formType }) => {
@@ -16,6 +16,8 @@ const BookForm = ({ book, formType }) => {
 
     if(formType === 'Create Book') {
       dispatch(addBook(book))
+    } else {
+      dispatch(updateBook(book))
     }
 
     history.push(`/books/${book.id}`);
