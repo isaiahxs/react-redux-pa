@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 import BookIndexItem from './BookIndexItem';
+import { useSelector } from 'react-redux';
 
 const BooksIndex = () => {
-  const books = [];
+
+  //will give us an object of books
+  const bookObj = useSelector(state => state.books)
+
+  //ORIGINAL
+  // const books = [];
+  const books = Object.values(bookObj);
+
   const resetBookData = (e) => {
     e.preventDefault();
   };
@@ -12,7 +20,7 @@ const BooksIndex = () => {
       <ul>
         {
           books.map(book => (
-            <BookIndexItem 
+            <BookIndexItem
               book={book}
               key={book.id}
             />
