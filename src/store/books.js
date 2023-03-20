@@ -4,6 +4,7 @@ import initialBooks from '../data/initial-books.json'
 export const ADD_BOOK = `books/ADD_BOOK`
 export const REMOVE_BOOK = `books/REMOVE_BOOK`
 export const UPDATE_BOOK = `books/UPDATE_BOOK`
+export const RESET_BOOKS = `books/RESET_BOOKS`
 
 
 //implicitly returning with the parentheses
@@ -24,6 +25,9 @@ export const removeBook = (bookId) => ({
     bookId
 })
 
+export const resetBooks = () => ({
+    type: RESET_BOOKS
+})
 
 
 
@@ -52,6 +56,9 @@ const booksReducer = (state=initialState, action) => {
         case REMOVE_BOOK:
             delete newState[action.bookId]
             return newState
+
+        case RESET_BOOKS:
+            return initialState
 
         default:
             return state;

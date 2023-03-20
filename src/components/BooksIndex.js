@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
 import BookIndexItem from './BookIndexItem';
 import { useSelector } from 'react-redux';
+import { resetBooks } from '../store/books';
+import { useDispatch } from 'react-redux';
 
 const BooksIndex = () => {
 
   //will give us an object of books
   const bookObj = useSelector(state => state.books)
+
+  const dispatch = useDispatch();
 
   //ORIGINAL
   // const books = [];
@@ -13,6 +17,7 @@ const BooksIndex = () => {
 
   const resetBookData = (e) => {
     e.preventDefault();
+    dispatch(resetBooks())
   };
 
   return (
